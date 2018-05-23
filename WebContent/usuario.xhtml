@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="pt-br" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html">
+<h:head>
+	<title>Cadastro de Usuário</title>
+	<h:outputStylesheet library="css" name="style.css" />
+</h:head>
+<h:body>
+	<h:messages style="color:red;" />
+	<h:form>
+		<h:panelGrid columns="2">
+
+			<h:outputLabel value="Nome:" />
+			<h:panelGroup>
+				<h:inputText id="itNome" value="#{usuarioController.usuario.nome}" />
+				<h:message for="itNome" style="color:red" />
+			</h:panelGroup>
+
+			<h:outputLabel value="Usuário:" />
+			<h:inputText value="#{usuarioController.usuario.login}" />
+
+			<h:outputLabel value="Senha:" />
+			<h:inputSecret value="#{usuarioController.usuario.senha}" />
+
+			<h:outputLabel value="Nome do Estado:" />
+			<h:inputText value="#{usuarioController.usuario.estado.nome}" />
+
+			<h:outputLabel value="Sigla do Estado:" />
+			<h:inputText value="#{usuarioController.usuario.estado.sigla}" />
+
+			<h:outputLabel value="Cpf:" />
+			<h:inputText value="#{usuarioController.usuario.cpf}" />
+
+			<h:outputLabel value="E-mail:" />
+			<h:inputText value="#{usuarioController.usuario.email}" />
+
+			<h:outputLabel value="Altura:" />
+			<h:inputText value="#{usuarioController.usuario.altura}" />
+
+			<h:outputLabel value="Data de Nascimento:" />
+			<h:inputText value="#{usuarioController.usuario.dataNascimento}" >
+				<f:convertDateTime 
+					pattern="dd/MM/yyyy" 
+					locale="pt_BR" 
+					type="date" />
+			</h:inputText>
+
+			<h:commandButton value="Salvar" action="#{usuarioController.salvar}" />
+		</h:panelGrid>
+	</h:form>
+	<h:form>
+		<h:dataTable value="#{usuarioController.listaUsuario}" var="usu"
+			styleClass="orders" headerClass="ordersHeader"
+			rowClasses="oddColumn, evenColumn">
+			<h:column>
+				<!-- facet - coloca o cabeçalho no data table -->
+				<f:facet name="header">Nome do Usuário</f:facet>
+				<h:commandLink value="#{usu.nome}">
+					<f:setPropertyActionListener value="#{usu}"
+						target="#{usuarioController.usuario}" />
+				</h:commandLink>
+			</h:column>
+			<h:column>
+				<f:facet name="header">Usuário</f:facet>
+				<h:outputLabel value="#{usu.login}" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">Estado</f:facet>
+				<h:outputLabel value="#{usu.estado.nome}" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+</h:body>
+</html>
