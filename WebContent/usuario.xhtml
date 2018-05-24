@@ -7,7 +7,7 @@
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	<h:messages style="color:red;" />
+	<h:messages redisplay="false" infoStyle="color:green;" warnStyle="color:yellow;" errorStyle="color:red;" />
 	<h:form>
 		<h:panelGrid columns="2">
 
@@ -34,9 +34,6 @@
 
 			<h:outputLabel value="E-mail:" />
 			<h:inputText value="#{usuarioController.usuario.email}" />
-
-			<h:outputLabel value="Altura:" />
-			<h:inputText value="#{usuarioController.usuario.altura}" />
 
 			<h:outputLabel value="Data de Nascimento:" />
 			<h:inputText value="#{usuarioController.usuario.dataNascimento}" >

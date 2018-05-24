@@ -8,6 +8,8 @@ import javax.validation.constraints.NotEmpty;
 
 public class Usuario implements Serializable {
 	private static final long serialVersionUID = -6656347778647534535L;
+	
+	private Integer id;
 
 	@NotEmpty(message=" O nome não pode ser nulo ou vazio.")
 	private String nome;
@@ -25,9 +27,15 @@ public class Usuario implements Serializable {
 	
 	private String email;
 	
-	private Float altura;
-
 	private Estado estado;
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
 
 	public String getNome() {
 		return nome;
@@ -59,14 +67,6 @@ public class Usuario implements Serializable {
 
 	public void setEstado(Estado estado) {
 		this.estado = estado;
-	}
-
-	public Float getAltura() {
-		return altura;
-	}
-
-	public void setAltura(Float altura) {
-		this.altura = altura;
 	}
 
 	public Date getDataNascimento() {

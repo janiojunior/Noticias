@@ -51,27 +51,7 @@ public class UsuarioController implements Serializable {
 
 	public List<Usuario> getListaUsuario() {
 		if (listaUsuario == null) {
-//			try {
-//				using (SqlConnection con = ConexaoBD.GetInstancia.GetConnection()) {
-//				try {
-//			  		con.Open();
-//					string sql = ("Select nome, idade from clientes where nome = '" + nome + "'");
-//					SqlCommand cmd = new SqlCommand(sql, con);
-//					SqlDataAdapter da = new SqlDataAdapter(cmd);
-//					DataTable cliente = new DataTable();
-//					da.Fill(cliente);
-//					return cliente;
-//				} catch (SqlException ex) {
-//					throw ex;
-//				} finally {
-//				    con.Close();
-//				}
-//				}
-//				} catch (Exception ex) {
-//				    throw ex;
-//				}
-//			
-//			listaUsuario = new ArrayList<Usuario>();
+			listaUsuario = new ArrayList<Usuario>();
 		}
 		return listaUsuario;
 	}

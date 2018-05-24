@@ -1,0 +1,39 @@
+// senha do root 12345678
+
+// conectando no banco mysql via terminal (Exceto versao 8)
+mysql -u root -p
+
+// lista os bancos
+SHOW DATABASES;
+
+// lista os usuarios
+SELECT host, user FROM mysql.user;
+
+// cria um banco de dados
+CREATE DATABASE noticiadb;
+
+// cria um usuario
+CREATE USER noticia@localhost IDENTIFIED BY '1234';
+
+// concedendo privilegios
+GRANT ALL PRIVILEGES ON noticiadb.* TO noticia@localhost IDENTIFIED BY '1234';
+
+// mysql 8
+GRANT ALL PRIVILEGES ON noticiadb.* TO 'noticia'@'localhost';
+
+// concretizando os privilegios do comando anteriro
+FLUSH PRIVILEGES;
+
+// criando a tabela de usuarios
+CREATE TABLE `noticiadb`.`Usuario` (
+  `id` INT NOT NULL AUTO_INCREMENT,
+  `nome` VARCHAR(60) NULL,
+  `login` VARCHAR(45) NULL,
+  `senha` VARCHAR(45) NULL,
+  `dataNascimento` DATETIME NULL,
+  `ativo` TINYINT NULL,
+  `cpf` VARCHAR(14) NULL,
+  `email` VARCHAR(60) NULL,
+  `siglaEstado` VARCHAR(2) NULL,
+  `nomeEstado` VARCHAR(45) NULL,
+  PRIMARY KEY (`id`));
