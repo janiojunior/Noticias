@@ -1,6 +1,10 @@
 package br.unitins.noticias.model;
 
-public class Estado {
+import java.io.Serializable;
+
+public class Estado implements Serializable {
+	private static final long serialVersionUID = -2613889976237833204L;
+	
 	private String nome;
 	private String sigla;
 
