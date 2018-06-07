@@ -7,7 +7,7 @@
 	<h:outputStylesheet library="css" name="style.css" />
 </h:head>
 <h:body>
-	<h:messages redisplay="false" infoStyle="color:green;" warnStyle="color:yellow;" errorStyle="color:red;" />
+	<h:messages id="messages" redisplay="false" infoStyle="color:green;" warnStyle="color:yellow;" errorStyle="color:red;" />
 	<h:form id="formDados">
 		<h:panelGrid id="panelPrincipal" columns="2">
 
@@ -42,15 +42,27 @@
 					locale="pt_BR" 
 					type="date" />
 			</h:inputText>
-			
-			<h:commandButton value="Incluir" action="#{usuarioController.incluir}" />
+
 		</h:panelGrid>
-		
+		<h:panelGroup>
+			<h:commandButton value="Incluir" action="#{usuarioController.incluir}" disabled="#{usuarioController.usuario.id != null}" >
+				<f:ajax render="formDados formDataTable messages" execute="@form"/>
+			</h:commandButton>
+			<h:commandButton value="Alterar" action="#{usuarioController.alterar}" disabled="#{usuarioController.usuario.id == null}">
+				<f:ajax render="formDados formDataTable messages" execute="@form"/>
+			</h:commandButton> 
+			<h:commandButton value="Excluir" action="#{usuarioController.excluir}" disabled="#{usuarioController.usuario.id == null}" >
+				<f:ajax render="formDados formDataTable messages" execute="@form"/>
+			</h:commandButton>
+			<h:commandButton value="Limpar" action="#{usuarioController.limpar}" >
+				<f:ajax render="formDados formDataTable messages" execute="@this"/>
+			</h:commandButton>
+		</h:panelGroup>
 
 		
 	</h:form>
 			<br/>
-	<h:form>
+	<h:form id="formDataTable">
 		<h:dataTable value="#{usuarioController.listaUsuario}" var="usu"
 			styleClass="orders" headerClass="ordersHeader"
 			rowClasses="oddColumn, evenColumn">
@@ -58,6 +70,7 @@
 				<!-- facet - coloca o cabeçalho no data table -->
 				<f:facet name="header">Nome do Usuário</f:facet>
 				<h:commandLink value="#{usu.nome}">
+					<f:ajax render="formDados" execute="@this"/>
 					<f:setPropertyActionListener value="#{usu}" target="#{usuarioController.usuario}" />
 				</h:commandLink>
 			</h:column>
