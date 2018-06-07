@@ -8,8 +8,8 @@
 </h:head>
 <h:body>
 	<h:messages redisplay="false" infoStyle="color:green;" warnStyle="color:yellow;" errorStyle="color:red;" />
-	<h:form>
-		<h:panelGrid columns="2">
+	<h:form id="formDados">
+		<h:panelGrid id="panelPrincipal" columns="2">
 
 			<h:outputLabel value="Nome:" />
 			<h:panelGroup>
@@ -18,7 +18,7 @@
 			</h:panelGroup>
 
 			<h:outputLabel value="Usuário:" />
-			<h:inputText value="#{usuarioController.usuario.login}" />
+			<h:inputText id="itLogin" value="#{usuarioController.usuario.login}" />
 
 			<h:outputLabel value="Senha:" />
 			<h:inputSecret value="#{usuarioController.usuario.senha}" />
@@ -42,10 +42,14 @@
 					locale="pt_BR" 
 					type="date" />
 			</h:inputText>
-
+			
 			<h:commandButton value="Incluir" action="#{usuarioController.incluir}" />
 		</h:panelGrid>
+		
+
+		
 	</h:form>
+			<br/>
 	<h:form>
 		<h:dataTable value="#{usuarioController.listaUsuario}" var="usu"
 			styleClass="orders" headerClass="ordersHeader"
@@ -54,8 +58,7 @@
 				<!-- facet - coloca o cabeçalho no data table -->
 				<f:facet name="header">Nome do Usuário</f:facet>
 				<h:commandLink value="#{usu.nome}">
-					<f:setPropertyActionListener value="#{usu}"
-						target="#{usuarioController.usuario}" />
+					<f:setPropertyActionListener value="#{usu}" target="#{usuarioController.usuario}" />
 				</h:commandLink>
 			</h:column>
 			<h:column>

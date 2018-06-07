@@ -35,7 +35,6 @@ public class UsuarioController implements Serializable {
 					.getConnection("jdbc:mysql://localhost:3306/noticiadb?"
 							+ "useSSL=false", "noticia", "1234");
 		} catch (ClassNotFoundException | SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} 
 		return conn;
@@ -44,8 +43,13 @@ public class UsuarioController implements Serializable {
 	public void incluir() {
 		Connection conn = getConnection();
 		try {
+
 			PreparedStatement stat = 
-					conn.prepareStatement("INSERT INTO Usuario (nome, login, dataNascimento) "
+					conn.prepareStatement("INSERT INTO Usuario ("
+							+ "nome, "
+							+ "login, "
+							+ "dataNascimento"
+							+ ") "
 							+ "	VALUES (?, ?, ?) ");
 			stat.setString(1, getUsuario().getNome());
 			stat.setString(2, getUsuario().getLogin());
@@ -54,7 +58,6 @@ public class UsuarioController implements Serializable {
 //				data = new Date(getUsuario().getDataNascimento().getTime());
 			
 			stat.setDate(3,  getUsuario().getDataNascimento() == null ? null: new Date(getUsuario().getDataNascimento().getTime()) );
-			
 			
 			stat.execute();
 			
@@ -66,8 +69,15 @@ public class UsuarioController implements Serializable {
 			Util.addInfoMessage("Erro ao incluir!");
 			e.printStackTrace();
 		}
-				
-		
+	}
+	
+	public void alterar() {
+	}
+	
+	public void excluir() {
+	}
+
+	public void limpar() {
 	}
 
 	public Usuario getUsuario() {
